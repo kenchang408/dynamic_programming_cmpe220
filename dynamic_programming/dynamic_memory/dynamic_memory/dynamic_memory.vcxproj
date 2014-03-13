@@ -70,6 +70,9 @@
   <ItemGroup>
     <ClCompile Include="dynamic_programming_main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inputData.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

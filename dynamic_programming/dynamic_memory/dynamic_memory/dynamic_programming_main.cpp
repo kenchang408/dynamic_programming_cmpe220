@@ -1,24 +1,19 @@
 #include <iostream>
 #include <vector>
 #include "boost/tuple/tuple.hpp"
+#include "inputData.h"
 
 
 using boost::tuple;
-typedef std::vector< tuple<double, double, double> > tuple_list;//list of tuples of values t time, P probabilty, and C cost 
+
 typedef std::vector< tuple<double, double> > PCtuples;//list of tuples of P and C
-typedef std::vector<tuple_list> node_mode; //node_mode 
-typedef std::vector<node_mode> node;//node 
-typedef std::vector<node> nodes;
+
 void setupInput();
 void displayInput();
 void findPC_t(node, int);
 void findBestPC();
 
-//variables for setupInput
-	node_mode n0R1, n0R2, n1R1, n1R2, n2R1, n2R2, n3R1, n3R2;
-	node n0, n1, n2, n3; 
-	nodes n;
-    tuple_list n0R1l1, n0R2l1, n1R1l1, n1R2l1, n2R1l1, n2R2l1, n3R1l1, n3R2l1;
+
 //variables for findBestPC_t and findBestPC
 	PCtuples temp, bestPC;
 
@@ -28,9 +23,8 @@ int main ()
 
 
 
-
 setupInput();
-displayInput();
+//displayInput();
 std::cout << "for n0, best (P, C) at time 1 is: " << std::endl;
 findPC_t(n0, 1);
 std::cout << "for n0 best (P, C) at time 2 is: " << std::endl;
@@ -47,77 +41,7 @@ findPC_t(n0, 5);
   return 0;
 }
 
-void setupInput(){
 
-	// setup table input
-
-	
-    n0R1l1.push_back(tuple<double, double, double> (1, 0.8, 9)); 
-	n0R1l1.push_back(tuple<double, double, double> (2, 0.2, 9));
-	
-	n0R2l1.push_back(tuple<double, double, double> (2, 0.8, 5));
-	n0R2l1.push_back(tuple<double, double, double> (3, 0.2, 5));
-	
-	n1R1l1.push_back(tuple<double, double, double> (1, 0.9, 10));
-	n1R1l1.push_back(tuple<double, double, double> (3, 0.1, 10));
-	
-	n1R2l1.push_back(tuple<double, double, double> (2, 0.7, 4)); 
-	n1R2l1.push_back(tuple<double, double, double> (4, 0.3, 4)); 
-	
-	n2R1l1.push_back(tuple<double, double, double> (1, 0.9, 9));
-	n2R1l1.push_back(tuple<double, double, double> (4, 0.1, 9));
-	
-	n2R2l1.push_back(tuple<double, double, double> (2, 0.8, 5));
-	n2R2l1.push_back(tuple<double, double, double> (6, 0.2, 5));
-	
-	n3R1l1.push_back(tuple<double, double, double> (1, 0.2, 8));
-	n3R1l1.push_back(tuple<double, double, double> (2, 0.8, 8));
-
-	n3R2l1.push_back(tuple<double, double, double> (3, 0.4, 2));
-	n3R2l1.push_back(tuple<double, double, double> (6, 0.6, 2));
-
-
-	n0R1.push_back(n0R1l1);
-	n0R2.push_back(n0R2l1);
-	n1R1.push_back(n1R1l1);
-	n1R2.push_back(n1R2l1);
-	n2R1.push_back(n2R1l1);
-	n2R2.push_back(n2R2l1);
-	n3R1.push_back(n3R1l1);
-	n3R2.push_back(n3R2l1);
-	n0.push_back(n0R1);
-	n0.push_back(n0R2);
-	n1.push_back(n1R1);
-	n1.push_back(n1R2);
-	n2.push_back(n2R1);
-	n2.push_back(n2R2);
-	n3.push_back(n3R1);
-	n3.push_back(n3R2);
-	n.push_back(n0);
-	n.push_back(n1);
-	n.push_back(n2);
-	n.push_back(n3);
-
-
-}
-
-void displayInput() {
-
-
-	for (int i = 0; i < n.size(); i++) {
-	for (int j = 0; j < n[i].size(); j++) {
-		std::cout << "n" << i << "R" << j+1 << std::endl;
-		for (int k = 0; k < n[i][j].size(); k++) {
-			for (int l = 0; l < n[i][j][k].size(); l++) {
-			std::cout << "(" << n[i][j][k][l].get<0>() << ", " << n[i][j][k][l].get<1>() << ", " << n[i][j][k][l].get<2>() << ")" << std::endl;
-			}
-		}
-	}
-}	
-
-
-
-}
 void findPC_t(node node_num, int time)// find and display possible (P, C) for particular node# and t
 {
 			
@@ -165,55 +89,89 @@ void findPC_t(node node_num, int time)// find and display possible (P, C) for pa
 }
 
 void findBestPC(){
-					   
-		std::cout << "tuple empty, one tuple added to list" << std::endl;// initial for comparison
-	bestPC.push_back(tuple<double, double> (temp[0].get<0>(), temp[0].get<1>()));//if bestPC is empty, get value of temp at index=0
-	temp.erase(temp.begin());
 	
-		             for (int bestIndex = 0; bestIndex < bestPC.size(); bestIndex++){
-					   double probability, cost;// value for each (P, C) in bestPC list
-					   probability = bestPC[bestIndex].get<0>();
-					   cost = bestPC[bestIndex].get<1>();
-						//std::cout << "(" << temp[index].get<0>() 
-						//<< ", " << temp[index].get<1>() << ")" << std::endl;
-
+	bestPC.clear();
 	
+	
+	int tempIndex = 0;
+	if(bestPC.empty()){
+	//	std::cout << "tuple empty, one tuple added to list" << std::endl;// initial for comparison
+		bestPC.push_back(tuple<double, double> (temp[0].get<0>(), temp[0].get<1>()));//if bestPC is empty, get value of temp at index=0
+		
+	
+	}
+		             
+			tempIndex =1;
+					  double probability, cost;// value for each (P, C) in bestPC list
+						int index = 0;
+						int maxSize = bestPC.size();
 
-					   while(!temp.empty())
+
+						
+				while(index < maxSize) {
+					 probability = bestPC[index].get<0>();
+						cost = bestPC[index].get<1>();
+					   while(tempIndex<temp.size())
 					{
 						
-						if (temp[0].get<0>() <= probability && temp[0].get<1>() > cost) 
+						//std::cout << "tempIndex = " << tempIndex << std::endl;
+						//std::cout << "temp.size() = " << temp.size() << std::endl;
+						probability = bestPC[index].get<0>();
+						cost = bestPC[index].get<1>();
+
+							
+						
+
+				//	std::cout << " TEMP(" << temp[tempIndex].get<0>() 
+						//<< ", " << temp[tempIndex].get<1>() << ")" << std::endl;
+					//std::cout << " BESTPC(" << probability 
+					//	<< ", " << cost << ")" << std::endl;
+						
+						if (temp[tempIndex].get<0>() <= probability && temp[tempIndex].get<1>() > cost) 
 						{
 							//std::cout << "temp (P, C) has worse cost and worst and equal probability, do nothing" << std::endl;
 						}
-						else if (temp[0].get<0>() == probability && temp[0].get<1>() == cost) 
+						else if (temp[tempIndex].get<0>() == probability && temp[tempIndex].get<1>() == cost) 
 						{
 							//std::cout << "temp (P, C) has equal cost and probability, do nothing" << std::endl;
 						}
 				
-						else if (temp[0].get<0>() > probability && temp[0].get<1>() <= cost)
+						else if (temp[tempIndex].get<0>() > probability && temp[tempIndex].get<1>() <= cost)
 						{
-						//	std::cout << "temp (P, C) has better or equal cost and  better probability, erase bestPC[bestIndex] and add temp (P,C) to bestPC" << std::endl;
-							bestPC.erase(bestPC.begin() + bestIndex);
-							bestPC.push_back(tuple<double, double> (temp[0].get<0>(), temp[0].get<1>()));
+							//std::cout << "temp (P, C) has better or equal cost and  better probability, erase bestPC[bestIndex] and add temp (P,C) to bestPC" << std::endl;
+							
+							bestPC[index].get<0>() = temp[tempIndex].get<0>();
+							bestPC[index].get<1>() = temp[tempIndex].get<1>();
+							//std::cout << "bestPC[index].get<0>(), bestPC[index].get<1>() = " << bestPC[index].get<0>() << ", " << bestPC[index].get<1>() << std::endl;
+						   // std::cout << "bestPC.size() = " << bestPC.size() << std::endl;
+							
+							
 						}
-						else if (temp[0].get<0>() == probability && temp[0].get<1>() < cost)
+						else if (temp[tempIndex].get<0>() == probability && temp[tempIndex].get<1>() < cost)
 						{
-							//std::cout << "temp (P, C) has better cost and equal probability, erase bestPC[bestIndex] and add temp (P,C) to bestPC" << std::endl;
-							bestPC.erase(bestPC.begin() + bestIndex);
-							bestPC.push_back(tuple<double, double> (temp[0].get<0>(), temp[0].get<1>()));
+							//std::cout << "temp (P, C) has better cost and equal probability" << std::endl;
+							
+							bestPC[index].get<0>() = temp[tempIndex].get<0>();
+							bestPC[index].get<1>() = temp[tempIndex].get<1>();
 						}
 						else 
-							bestPC.push_back(tuple<double, double> (temp[0].get<0>(), temp[0].get<1>()));
+						{
+							//std::cout << "temp (P, C) has better cost but worse probability" << std::endl;
+							bestPC.push_back(tuple<double, double> (temp[tempIndex].get<0>(), temp[tempIndex].get<1>()));
+						}
+							// std::cout << "bestPC.size() = " << bestPC.size() << std::endl;
+						tempIndex ++;
 						
-
-						temp.erase(temp.begin());
-						
+					}
 					
-						
-					 }
+						maxSize = bestPC.size();
+						 //std::cout << "maxSize = " << maxSize << std::endl;
+						  
+						index ++;
+						  //std::cout << "index = " << index << std::endl;
+				}
 
-					 }
+				
 						
 					
 	
@@ -226,7 +184,6 @@ void findBestPC(){
 
 	
 }
-
 
 
 
