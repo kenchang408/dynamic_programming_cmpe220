@@ -1,4 +1,4 @@
-﻿Build started 3/14/2014 11:58:48 PM.
+﻿Build started 3/15/2014 1:15:17 PM.
      1>Project "C:\Users\AMD_QUADCORE\Documents\GitHub\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_memory.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt dynamic_programming_main.cpp
@@ -7,15 +7,17 @@
      1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\inputdata.h(84): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\inputdata.h(86): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\inputdata.h(87): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(41): warning C4244: 'argument' : conversion from 'double' to 'unsigned int', possible loss of data
-     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(41): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(56): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(57): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(59): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(57): warning C4244: 'argument' : conversion from 'double' to 'unsigned int', possible loss of data
+     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(57): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(72): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(73): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(87): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(119): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(126): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(75): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(105): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(136): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(143): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(166): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(228): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\amd_quadcore\documents\github\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\dynamic_memory\dynamic_programming_main.cpp(229): warning C4018: '<' : signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\AMD_QUADCORE\Documents\GitHub\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\Debug\dynamic_programming.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\AMD_QUADCORE\Documents\GitHub\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\Debug\dynamic_programming.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\AMD_QUADCORE\Documents\GitHub\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\Debug\dynamic_programming.lib" /MACHINE:X86 Debug\dynamic_programming_main.obj
          dynamic_memory.vcxproj -> C:\Users\AMD_QUADCORE\Documents\GitHub\dynamic_programming_cmpe220\dynamic_programming\dynamic_memory\Debug\dynamic_programming.exe
@@ -23,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.89
+Time Elapsed 00:00:02.10

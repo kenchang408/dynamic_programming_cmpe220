@@ -15,7 +15,7 @@ void findBestPC();
 
 
 //variables for findBestPC_t and findBestPC
-	PCtuples temp, bestPC;
+	PCtuples temp, bestPC, temp2;
 
 
 int main ()
@@ -34,10 +34,26 @@ std::cout<<"--------------------------------------------------------------------
 while (exit != 'y') {
 std::cout<<"Enter node# (0-3): ";
 std::cin>>node_num;
+if (node_num < 0 || node_num > 3)
+{
+	
+	std::cout<<"Not Valid !!!";
+	std::cout<<"Enter node# (0-3): ";
+	std::cin>>node_num;
+
+}
 std::cout<<"Enter time constraint (integers > 0): ";
 std::cin>>time;
+if (node_num < 0)
+{
+	
+	std::cout<<"Not Valid !!!";
+	std::cout<<"Enter time constraint (integers > 0): ";
+std::cin>>time;
 
-std::cout << "for node" << node_num << ", best (P, C) at time =" << time << " is: " << std::endl;
+}
+
+std::cout << "for node" << node_num << ", best (P, C) at time = " << time << " is: " << std::endl;
 findPC_t(n[node_num], time);
 
 std::cout<<"Enter y to exit: ";
@@ -68,7 +84,7 @@ void findPC_t(node node_num, int time)// find and display possible (P, C) for pa
 					}
 				}
 		}
-
+/*
 	std::cout << "TEMP LIST" << std::endl;
 		for(int index1=0; index1 < temp.size(); index1++)
 						{
@@ -77,11 +93,13 @@ void findPC_t(node node_num, int time)// find and display possible (P, C) for pa
 						<< ", " << temp[index1].get<1>() << ")" << std::endl;
 						
 						}
+
+						*/
 	//	temp.clear();
 		
 		findBestPC();
 
-		std::cout << "BESTPC LIST" << std::endl;
+	//std::cout << "BESTPC LIST" << std::endl;
 		
 
 	     for (int bestIndex = 0; bestIndex < bestPC.size(); bestIndex++) {
@@ -103,7 +121,6 @@ void findBestPC(){
 	if(bestPC.empty()){
 	//	std::cout << "tuple empty, one tuple added to list" << std::endl;// initial for comparison
 		bestPC.push_back(tuple<double, double> (temp[0].get<0>(), temp[0].get<1>()));//if bestPC is empty, get value of temp at index=0
-		
 	}
 		             
 			
@@ -116,82 +133,112 @@ void findBestPC(){
 				while(index < maxSize) {
 					
 					
-					   for(int tempIndex=1; tempIndex < temp.size(); tempIndex++)
-					{
+					   for(int tempIndex=1; tempIndex < temp.size(); tempIndex++){
 					
 					
 						probability = bestPC[index].get<0>();
 						cost = bestPC[index].get<1>();
 						int ignore = 0;
-						for (int test = 0; (test < bestPC.size()) && (ignore == 0); test++){
+
+						for (int test = 1; (test < bestPC.size()); test++){
 								if ((temp[tempIndex].get<0>() == bestPC[test].get<0>()) && (temp[tempIndex].get<1>() == bestPC[test].get<1>()) ){
-									if (temp[tempIndex].get<0>() <= bestPC[test].get<0>() && bestPC[test].get<1>()) 
+									ignore = 1;
+								}
+								if (temp[tempIndex].get<0>() <= bestPC[test].get<0>() && temp[tempIndex].get<0>() > bestPC[test].get<1>()) {
 										ignore = 1;
 								}
+										
+								
+								
+
 							}	
 						
 
-					std::cout << " TEMP(" << temp[tempIndex].get<0>() 
-						<< ", " << temp[tempIndex].get<1>() << ")" << std::endl;
-					std::cout << " BESTPC(" << probability 
-						<< ", " << cost << ")" << std::endl;
+				//	std::cout << " TEMP(" << temp[tempIndex].get<0>() 
+						//<< ", " << temp[tempIndex].get<1>() << ")" << std::endl;
+				//	std::cout << " BESTPC(" << probability 
+						//<< ", " << cost << ")" << std::endl;
 						if (ignore !=1)
-						{
-						if (temp[tempIndex].get<0>() <= probability && temp[tempIndex].get<1>() > cost) 
-						{
-							std::cout << "temp (P, C) has worse cost and worst and equal probability, do nothing" << std::endl;
-						}
-						else if (temp[tempIndex].get<0>() > probability && temp[tempIndex].get<1>() <= cost)
-						{
-							std::cout << "temp (P, C) has equal or better cost and  better probability" << std::endl;
+						{   
 
-							bestPC[index].get<0>() = temp[tempIndex].get<0>();
-							bestPC[index].get<1>() = temp[tempIndex].get<1>();
-
-						}
-						else if (temp[tempIndex].get<0>() > probability && temp[tempIndex].get<1>() > cost)
-						{
-							std::cout << "temp (P, C) has worst cost and better probability" << std::endl;
-							bestPC.push_back(tuple<double, double> (temp[tempIndex].get<0>(), temp[tempIndex].get<1>()));	
-						}
-
-						else if (temp[tempIndex].get<0>() == probability && temp[tempIndex].get<1>() < cost)
-						{
-							std::cout << "temp (P, C) has better cost and  equal probability" << std::endl;
+							int duplicate = 0;
+								
+								for(int i = 0; (i < bestPC.size()) && (duplicate != 1); i++){
+									if(temp[tempIndex].get<0>() == bestPC[i].get<0>() && temp[tempIndex].get<1>() == bestPC[i].get<1>())
+									duplicate = 1;
+								}
 							
-							bestPC[index].get<0>() = temp[tempIndex].get<0>();
-							bestPC[index].get<1>() = temp[tempIndex].get<1>();
-				
-						}
-						else 
-						{
-							std::cout << "temp (P, C) has better cost but worse probability" << std::endl;
-							bestPC.push_back(tuple<double, double> (temp[tempIndex].get<0>(), temp[tempIndex].get<1>()));	
-						}
-						// std::cout << "bestPC.size() = " << bestPC.size() << std::endl;
-					
-							//std::cout << "tempIndex = " << tempIndex << std::endl;
-						}
-					
-					}
 
-				maxSize = bestPC.size();
-						 std::cout << "maxSize = " << maxSize << std::endl;
+							if (temp[tempIndex].get<0>() <= probability && temp[tempIndex].get<1>() > cost) 
+							{
+									//std::cout << "temp (P, C) has worse cost and worst and equal probability, do nothing" << std::endl;
+							}
+							else if (temp[tempIndex].get<0>() > probability && temp[tempIndex].get<1>() <= cost)
+							{
+									//std::cout << "temp (P, C) has equal or better cost and  better probability" << std::endl;
+									if(duplicate!= 1){
+									bestPC[index].get<0>() = temp[tempIndex].get<0>();
+									bestPC[index].get<1>() = temp[tempIndex].get<1>();
+									}
+									
+							}
+							else if (temp[tempIndex].get<0>() > probability && temp[tempIndex].get<1>() > cost)
+							{
+								//std::cout << "temp (P, C) has worst cost and better probability" << std::endl;
+								if(duplicate!= 1)
+								bestPC.push_back(tuple<double, double> (temp[tempIndex].get<0>(), temp[tempIndex].get<1>()));	
+							}
+
+							else if (temp[tempIndex].get<0>() == probability && temp[tempIndex].get<1>() < cost)
+							{
+									//std::cout << "temp (P, C) has better cost and  equal probability" << std::endl;
+								if(duplicate!= 1){
+									bestPC[index].get<0>() = temp[tempIndex].get<0>();
+									bestPC[index].get<1>() = temp[tempIndex].get<1>();
+								}
+						
+							}
+							else 
+							{
+									//std::cout << "temp (P, C) has better cost but worse probability" << std::endl;
+								
+									if(duplicate!= 1)
+									bestPC.push_back(tuple<double, double> (temp[tempIndex].get<0>(), temp[tempIndex].get<1>()));
+						
+							}
+						
+						
+						
+						}
+						
+						
+						
+						
+						}
+					
+
+						maxSize = bestPC.size();
+						// std::cout << "maxSize = " << maxSize << std::endl;
 						  
 						index ++;
-						  std::cout << "index = " << index << std::endl;
+						  //std::cout << "index = " << index << std::endl;
 				}	
-					
+
+	temp2 = bestPC;
+	for (int test1 = 0; test1 < temp2.size(); test1++){				
+		for(int test2 = 0; test2 < bestPC.size(); test2++)
+		{
+		if ((temp2[test1].get<0>() > bestPC[test2].get<0>()) && (temp2[test1].get<1>() <= bestPC[test2].get<1>()) )
+			bestPC.erase(bestPC.begin() + test2);
+		if ((temp2[test1].get<0>() == bestPC[test2].get<0>()) && (temp2[test1].get<1>() < bestPC[test2].get<1>()) )
+			bestPC.erase(bestPC.begin() + test2);
+		}
+		
+
+
+	}
 	
 
-	
 
 
-
-	
-
-	
 }
-
-
-
