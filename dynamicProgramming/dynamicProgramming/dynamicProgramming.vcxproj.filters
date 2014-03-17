@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\dynamic_programming\dynamic_programming\inputData.h">
+    <ClInclude Include="inputData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\dynamic_programming\dynamic_programming\dynamic_programming_main.cpp">
+    <ClCompile Include="dynamic_programming_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

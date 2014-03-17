@@ -10,6 +10,12 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inputData.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dynamic_programming_main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{16B52CD4-9041-4EE7-A343-6330EAE486F9}</ProjectGuid>
     <RootNamespace>dynamicProgramming</RootNamespace>
@@ -66,12 +72,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\dynamic_programming\dynamic_programming\inputData.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\dynamic_programming\dynamic_programming\dynamic_programming_main.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
