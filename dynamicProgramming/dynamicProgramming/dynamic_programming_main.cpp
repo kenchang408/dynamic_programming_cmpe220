@@ -12,11 +12,12 @@ void setupInput();
 void displayInput();
 void findPC_t(node, int);
 void findBestPC();
-void findBestPC_parallel();
+void findBestPC_parallel(PCtuples);
+void displayPClist(PCtuples);
 int pnode_num=0;
 
 //variables for findBestPC_t and findBestPC
-	PCtuples temp, bestPC, temp2, bestPCnode2, bestPCnode3, parallel_bestPC; 
+	PCtuples temp, bestPC, temp2, bestPCnode2, bestPCnode3, parallel_bestPC, parallel_bestPC1, parallel_bestPC2; 
 
 
 int main ()
@@ -28,7 +29,7 @@ char exit = NULL;
 
 setupInput();
 //displayInput();
-std::cout<<"WELCOME.  THIS PROMGRAM WILL CALCULATE B TABLE FOR INDIVIDUAL NODES (WITHOUT COMBINING PARALLEL NODES) \n";
+std::cout<<"WELCOME.  THIS PROMGRAM WILL CALCULATE B TABLE AND D TABLE \n";
 std::cout<<"------------------------------------------------------------------------------------------- \n";
 
 
@@ -46,14 +47,23 @@ if (node_num < 0 || node_num > 3)
 std::cout<<"Enter time constraint (integers > 0): ";
 std::cin>>time;
 
-if (node_num < 0)
-{
-	
-	std::cout<<"Not Valid !!!";
-	std::cout<<"Enter time constraint (integers > 0): ";
-std::cin>>time;
+std::cout<<"B TABLE\n";
+
+if(node_num == 2 || node_num == 3){
+std::cout << "for node (2,3), best (P, C) at time = " << time << " is: " << std::endl;
+pnode_num = 2;
+findPC_t(n[2], time);
+pnode_num = 3;
+findPC_t(n[3], time);
+
+findBestPC_parallel(parallel_bestPC1);
 
 }
+else {
+	std::cout << "for node" << node_num << ", best (P, C) at time = " << time << " is: " << std::endl;
+	findPC_t(n[node_num], time);
+}
+std::cout<<"D TABLE\n";
 if(node_num == 2 || node_num == 3){
 std::cout << "for node (2,3), best (P, C) at time = " << time << " is: " << std::endl;
 pnode_num = 2;
@@ -69,6 +79,10 @@ else {
 	findPC_t(n[node_num], time);
 }
 
+
+
+
+parallel_bestPC.clear();
 std::cout<<"Enter y to exit: ";
 std::cin>>exit;
 
@@ -269,7 +283,7 @@ void findBestPC(){
 
 }
 
-void findBestPC_parallel(){
+void findBestPC_parallel(PCtuples tuplelist){
 
 	for(int i = 0; i < bestPCnode2.size(); i++) {
 
@@ -284,13 +298,26 @@ void findBestPC_parallel(){
 	}
 
 
-   for (int bestIndex = 0; bestIndex < parallel_bestPC.size(); bestIndex++) {
-			std::cout << "(" << parallel_bestPC[bestIndex].get<0>() 
-						<< ", " << parallel_bestPC[bestIndex].get<1>() << ")" << std::endl;
-		 }		
+	displayPClist(parallel_bestPC);
+
+   
 
 
-   parallel_bestPC.clear();
+
+
+}
+
+void displayPClist(PCtuples tuplelist){
+	for (int bestIndex = 0; bestIndex < tuplelist.size(); bestIndex++) {
+			std::cout << "(" << tuplelist[bestIndex].get<0>() 
+						<< ", " << tuplelist[bestIndex].get<1>() << ")" << std::endl;
+		 }	
+
+
+
+}
+void create_Dtable()
+{
 
 
 
