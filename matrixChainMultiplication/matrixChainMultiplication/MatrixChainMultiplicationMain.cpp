@@ -10,7 +10,7 @@ int main()
 {
     int arr[] = {10, 100, 20, 50, 100, 10};
     int size = sizeof(arr)/sizeof(arr[0]);
- 
+	printf("The input is int arr[] = {10, 100, 20, 50, 100, 10} \nwhere Ai dimension is array[i-1]*array[i] for range from 1<i<(array size-1) \n");
     printf("\n Minimum number of multiplications is %d ", MatrixChainOrder(arr, size));
  
     getchar();
